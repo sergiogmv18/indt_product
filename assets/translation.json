@@ -1,0 +1,20 @@
+[
+     { 
+        "placeholder":"save",
+        "en":"save",
+        "pt_br":"salvar",
+        "fr":"sauver"
+       
+    },
+    { 
+        "placeholder":"Login",
+        "en":"Login",
+        "pt_br":"Entrar",
+        "fr":"Log-in"
+       
+    }
+
+
+
+
+]
