@@ -1,5 +1,5 @@
 # Avaliação Prática INDT
-- Será possível salvar localmente os produtos fornecidos pela api, também deletar localmente. Foi desenvolvido em flutter,porém,  só  tem soporte para android, usando banco de dados com floor (sqlLite), todos os metodos tem sua própria documentação para melhor entendimento,  pode visualizar o seguinte exemplo de documentaçao aplicado: 
+- Será possível salvar localmente os produtos fornecidos pela api, também deletar localmente. Foi desenvolvido em flutter,porém,  só  tem soporte para android, usando banco de dados com floor (sqlLite), todos os metodos tem sua própria documentação para melhor entendimento,  pode visualizar o seguinte exemplo de documentação aplicado: 
     /*
     * Resumo do que a funçao faz 
     * @author  inicial ou nome quen fez   - data 
@@ -10,14 +10,19 @@
 
 
 ## Organização 
+    Padrão de arquitetura MVC para organização das pastas, mudando brevemente o contexto e respeitando a regra:
+    - Models: entidades dos obj.
 
-Padrão de arquitetura MVC para organização das pastas, mudando brevemente o contexto e respeitando a regra:
-    - Models: entidades dos obj
-    - Controllers: controladores de cada obj e gerencionador de estados (provider)
-    - Services: services(session, metodos genericos),
-    - dao (Data Access Object): realiza a busca no banco de dados
-    - Screen: todas as telas com nomes que representam o que elas fazem ou mostram
+    - Controllers: controladores de cada obj e gerencionador de estados (provider).
+
+    - Services: services(session, metodos genericos).
+
+    - dao (Data Access Object): realiza a busca no banco de dados.
+
+    - Screen: todas as telas com nomes que representam o que elas fazem ou mostram.
+
     - style: todos os estilos usados em todo o app (Theme)
+    
     - Components: componentes reusados global com os nomes que representam ou fazem 
 
 ## Offline
