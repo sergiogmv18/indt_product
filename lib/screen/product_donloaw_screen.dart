@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:indt_products/components/alert_custom.dart';
 import 'package:indt_products/components/app_bar_custom.dart';
 import 'package:indt_products/components/circular_progress_indicator.dart';
 import 'package:indt_products/controllers/navigator_controller.dart';
@@ -31,6 +32,7 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
         appBar:appBarCustom(
           context,
           showButtonReturn: true,
+          showactions: false,
           onPressed: (){
             Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);                            
           }
@@ -79,10 +81,47 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
                             ),
                             IconButton(
                               onPressed:()async{
-                                showCircularLoadingDialog(context);
-                                await ProductController().delete(productWk:allProductsSaved[index]!);
-                                Provider.of<ProductController>(context, listen: false).productsSaved = serviceLocator<Session>().getValue('productsSaved');
-                                Navigator.of(context).pop();
+                                await showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return AlertDialogCustom(
+                                      title:  translate('attention'),
+                                      content:Text(
+                                        translate('do you want to remove the download product?'),
+                                        style: Theme.of(context).textTheme.titleMedium,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      actions: [
+                                         TextButton(
+                                          onPressed:(){
+                                            Navigator.of(context).pop();
+                                          }, 
+                                          child:Text(
+                                          translate('cancel'),
+                                          style: Theme.of(context).textTheme.titleMedium,
+                                          textAlign: TextAlign.center,
+                                          ),
+                                        ),
+
+                                        TextButton(
+                                          onPressed:()async{
+                                            showCircularLoadingDialog(context);
+                                            await ProductController().delete(productWk:allProductsSaved[index]!);
+                                            Provider.of<ProductController>(context, listen: false).productsSaved = serviceLocator<Session>().getValue('productsSaved');
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                          }, 
+                                          child:Text(
+                                          translate('yes'),
+                                          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: CustomColors.cancelActionButtonColor),
+                                          textAlign: TextAlign.center,
+                                          ),
+                                        )
+                                      ],
+                                    );
+                                  }
+                                ); 
                               }, 
                               icon: const Icon(Icons.delete)
                             )
@@ -95,7 +134,7 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
               }),
             ),
           )
-        ) :showMessageUser()
+        ) : Center(child:showMessageUser())
       )
     );
   }
@@ -108,24 +147,31 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
   * @return  void
   */
   showMessageUser(){
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child:Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            translate('list of saved products is empty, go back to the previous page see the products, and save the one that is most interesting to you'),
-            style:Theme.of(context).textTheme.titleLarge!
-          ),
-           IconButton(
-            onPressed:(){
+    return Card(
+      elevation: 4,
+      child: Container(
+        width: MediaQuery.of(context).size.width *0.9 ,
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+        child:Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              translate('your list of saved products is currently empty. Please return to the previous page to explore available products and save the ones that interest you the most'),
+              style:Theme.of(context).textTheme.titleLarge!,
+              textAlign: TextAlign.center,
+            ),
+            TextButton.icon(
+              onPressed: (){
               Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);   
-            }, 
-            icon:const Icon(Icons.arrow_circle_left),
-            iconSize: 60,
-          )
-        ],
+              }, 
+              icon: const Icon(Icons.arrow_circle_left), 
+              label:  Text(
+                translate('return'),
+                style:Theme.of(context).textTheme.titleLarge!
+              ),
+            ),  
+          ],
+        )
       )
     );
   }

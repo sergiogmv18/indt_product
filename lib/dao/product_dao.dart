@@ -8,4 +8,6 @@ abstract class ProductDao extends ReposiroryBaseDao<Product> {
   @Query('SELECT * FROM Product')
   Future<List<Product?>> fetchAll();
   
+  @Query('SELECT serverId FROM Product')
+  Future<List<int?>> fetchAllServerId();
 }

@@ -48,446 +48,75 @@
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"do you want to remove the download product?",
+        "en":"do you want to remove the download product?",
+        "pt_br":"você deseja remover o produto baixado?"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"cancel",
+        "en":"cancel",
+        "pt_br":"cancelar"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"yes",
+        "en":"yes",
+        "pt_br":"sim"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"attention",
+        "en":"attention",
+        "pt_br":"atenção"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"your list of saved products is currently empty. Please return to the previous page to explore available products and save the ones that interest you the most",
+        "en":"your list of saved products is currently empty. Please return to the previous page to explore available products and save the ones that interest you the most",
+        "pt_br":"sua lista de produtos salvos está vazia no momento. Por favor, retorne à página anterior para explorar os produtos disponíveis e salve aqueles que mais lhe interessam"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"return",
+        "en":"return",
+        "pt_br":"voltar"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"timeout expired, please check your internet connection and try again",
+        "en":"timeout expired, please check your internet connection and try again.",
+        "pt_br":"tempo limite expirado, por favor, verifique sua conexão com a internet e tente novamente."
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"we are currently unavailable, please try again later",
+        "en":"we are currently unavailable, please try again later",
+        "pt_br":"atualmente não estamos disponíveis, por favor tente novamente mais tarde."
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"check your connection and try again later",
+        "en":"check your connection and try again later",
+        "pt_br":"verifique sua conexão e tente novamente mais tarde"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"pleae try again later",
+        "en":"pleae try again later",
+        "pt_br":"por favor, tente novamente mais tarde."
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"downloads",
+        "en":"downloads",
+        "pt_br":"baixados"
        
     },
     { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
-       
-    },
-    { 
-        "placeholder":"",
-        "en":"",
-        "pt_br":""
+        "placeholder":"download all",
+        "en":"download all",
+        "pt_br":"baixar tudo"
        
     }
-    
-
-
-
-
 ]

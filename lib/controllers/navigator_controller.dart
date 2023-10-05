@@ -5,7 +5,7 @@ class NavigatorContoller{
   /*
   * Activate or not be able to go back to the previous page
   * @author  SGVx
-  * @version 20231004 - initial release
+  * @version 20230510 - initial release
   * @param   <bool>   - backToScreen -> true  - redirect to specific routeName  
   *                                  -> false -  does not make changes
   * @param   <String> -[routeName]    -> specific route 

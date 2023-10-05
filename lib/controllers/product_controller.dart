@@ -42,29 +42,50 @@ class ProductController  with ChangeNotifier {
   */
  Future<List> convertJsonInObj({required List dataJson})async{
   List products = [];
-    for(int product = 0; product < dataJson.length; product++){
-      Map<String, dynamic> currentProduct = dataJson[product];
-      Product productWk = Product();
-      productWk.setServerId(currentProduct['id']);
-      productWk.setTitle(currentProduct['title']);
-      productWk.setDescription(currentProduct['description']);
-      productWk.setPrice(double.parse(currentProduct['price'].toString()));
-      productWk.setDiscountPercentage(double.parse( currentProduct['discountPercentage'].toString()));
-      productWk.setRating(double.parse(currentProduct['rating'].toString()));
-      productWk.setStock(int.parse(currentProduct['stock'].toString()));
-      productWk.setBrand(currentProduct['brand']);
-      productWk.setCategory(currentProduct['category']);
-      productWk.setThumbnail(currentProduct['thumbnail']);
-      productWk.setImages(currentProduct['images']);
-     products.add(productWk);
-    }
+  for(int product = 0; product < dataJson.length; product++){
+    Map<String, dynamic> currentProduct = dataJson[product];
+    Product productWk = Product();
+    productWk.setServerId(currentProduct['id']);
+    productWk.setTitle(currentProduct['title']);
+    productWk.setDescription(currentProduct['description']);
+    productWk.setPrice(double.parse(currentProduct['price'].toString()));
+    productWk.setDiscountPercentage(double.parse( currentProduct['discountPercentage'].toString()));
+    productWk.setRating(double.parse(currentProduct['rating'].toString()));
+    productWk.setStock(int.parse(currentProduct['stock'].toString()));
+    productWk.setBrand(currentProduct['brand']);
+    productWk.setCategory(currentProduct['category']);
+    productWk.setThumbnail(currentProduct['thumbnail']);
+    productWk.setImages(currentProduct['images']);
+    products.add(productWk);
+  }
   return products;
  }
 
 
+/*
+  * save all Products
+  * @author SGV
+  * @version 20230314 initial release 
+  * @return  <Map<String, dynamic>>
+  */
+  Future<Map<String, dynamic>>saveAllProducts()async{
+    Map<String, dynamic> response = await getProductsOfServer();
+    List allProductsIdSaved =   await serviceLocator<IndtProductsDataBase>().productDao.fetchAllServerId();
+    if(response['success']){
+      List allProducts = response['payload'];
+      for(Product productWk in allProducts){
+        if(!allProductsIdSaved.contains(productWk.getServerId())){
+          await save(productWk:productWk);
+        }
+        
+      }
+    }
+    return response;
+  }
+
 
 /*
-  * save Project
+  * save product
   * @author SGV
   * @version 20230314 initial release 
   * @param <Product> productWk 
@@ -109,7 +130,7 @@ class ProductController  with ChangeNotifier {
 
 
  /*
-  * get  widget primary img of product
+  * get widget primary img of product
   * @author SGV
   * @version 20230314 initial release 
   * @param <String> logo 
@@ -125,11 +146,10 @@ class ProductController  with ChangeNotifier {
       fit: BoxFit.cover,
       errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
         return Image.asset(
-          'assets/logo_new.png',
+         'assets/logo.png',
           width:width,
           height: height,
           filterQuality: FilterQuality.high,
-          fit: BoxFit.cover
         );
       },
       frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
@@ -145,7 +165,5 @@ class ProductController  with ChangeNotifier {
         }
       }
     );
-  }
-
-  
+  } 
 }

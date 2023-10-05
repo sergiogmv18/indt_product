@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:indt_products/components/app_bar_custom.dart';
 import 'package:indt_products/components/circular_progress_indicator.dart';
+import 'package:indt_products/components/dawer.dart';
 import 'package:indt_products/controllers/product_controller.dart';
 import 'package:indt_products/controllers/translate_controller.dart';
+import 'package:indt_products/services/request.dart';
 import 'package:indt_products/services/service_locator.dart';
 import 'package:indt_products/services/session.dart';
 import 'package:indt_products/style.dart';
 import 'package:provider/provider.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 class HomeScreen extends StatefulWidget {
  const  HomeScreen({super.key});
@@ -14,6 +17,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
+  final _controller = SidebarXController(selectedIndex: 0, extended: true);
   @override
   void initState() { 
     super.initState();
@@ -24,45 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor:CustomColors.frontColor,
-        drawer: Container(
-          width:  MediaQuery.of(context).size.width * 0.45,
-          color: CustomColors.disabledColor,
-          child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text(
-              'Menú',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.download_done),
-            title: Text(translate('download done')),
-            onTap: () {
-                Navigator.of(context).pushNamedAndRemoveUntil('/downloaded/products', (route) => false);
+        drawer: SidebarCustom(controller: _controller),
+        appBar:appBarCustom(
+          context, 
+          showButtonReturn: true, 
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () { Scaffold.of(context).openDrawer(); },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
             },
           ),
-         
-        ],
-      ),
         ),
-         
-        appBar:appBarCustom(context, showButtonReturn: true, leading:  Builder(
-    builder: (BuildContext context) {
-      return IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () { Scaffold.of(context).openDrawer(); },
-        tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-      );
-    },
-  ),),
         body:FutureBuilder(
           future: ProductController().getProductsOfServer(),
           builder: (context, app){
@@ -134,6 +113,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 );
+              }else{
+                return Center(
+                  child: Card(
+                    elevation: 4,
+                    child: Container(   
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      child:Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            Request.errorServer( app.data!['error']),
+                            style:Theme.of(context).textTheme.titleLarge!,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    )
+                  )
+                );
               }
             }
             if(app.hasError){
@@ -154,25 +153,33 @@ class _HomeScreenState extends State<HomeScreen> {
   * @return  void
   */
   showMessageUser(){
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child:Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            translate('product list is empty, please update'),
-            style:Theme.of(context).textTheme.titleLarge!
-          ),
-           IconButton(
-            onPressed:()async{
-              showCircularLoadingDialog(context);
-              await ProductController().getProductsOfServer();
-              Navigator.of(context).pop();
-            }, 
-            icon:const Icon(Icons.replay_outlined) 
+    return Center(
+      child: Card(
+        elevation: 4,
+        child: Container(
+          width: MediaQuery.of(context).size.width *0.9,
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          child:Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                translate('product list is empty, please update'),
+                style:Theme.of(context).textTheme.titleLarge!,
+                textAlign: TextAlign.center,
+              ),
+              TextButton.icon(
+                onPressed: ()async{
+                  Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false); 
+                }, 
+                icon: const Icon(Icons.replay_outlined), 
+                label:  Text(
+                  translate('update'),
+                  style:Theme.of(context).textTheme.titleLarge!
+                ),
+              ),
+            ],
           )
-        ],
+        )
       )
     );
   }

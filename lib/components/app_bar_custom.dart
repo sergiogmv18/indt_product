@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:indt_products/components/circular_progress_indicator.dart';
-import 'package:indt_products/controllers/product_controller.dart';
 import 'package:indt_products/style.dart';
 
 /*
@@ -8,12 +6,13 @@ import 'package:indt_products/style.dart';
  * @author  SGV      - 20231004
  * @version 1.0      - 20231004         - initial release
  * @param <bool>     - showButtonReturn - show button to return to the previous page or perform some action
+ * @param <bool>     - showactions      - show button action or no
  * @param <Function> - onPressed        - action of button
  * @return  <component> widget
  */
-appBarCustom(BuildContext context, {Widget? leading, bool showButtonReturn = false, bool showactions = false, void Function()? onPressed}) {
+appBarCustom(BuildContext context, {Widget? leading, bool showButtonReturn = false, bool showactions = true, void Function()? onPressed}) {
   return AppBar(
-    backgroundColor:CustomColors.activeButtonColor,
+    backgroundColor:CustomColors.disabledColor,
     automaticallyImplyLeading: showButtonReturn,
     leading: showButtonReturn ? leading ?? IconButton(
       onPressed:onPressed, 
@@ -28,18 +27,10 @@ appBarCustom(BuildContext context, {Widget? leading, bool showButtonReturn = fal
       width: 150,
       filterQuality: FilterQuality.high,
     ),
-    actions:!showactions ? [
-        IconButton(
-        onPressed:()async{
-          Navigator.of(context).pushNamedAndRemoveUntil('/downloaded/products', (route) => false);
-        }, 
-        icon:const Icon(Icons.download_done) 
-      ),
+    actions:showactions ? [
       IconButton(
         onPressed:()async{
-          showCircularLoadingDialog(context);
-          await ProductController().getProductsOfServer();
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false); 
         }, 
         icon:const Icon(Icons.replay_outlined) 
       )

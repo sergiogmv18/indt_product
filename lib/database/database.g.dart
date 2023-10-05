@@ -189,6 +189,12 @@ class _$ProductDao extends ProductDao {
   }
 
   @override
+  Future<List<int?>> fetchAllServerId() async {
+    return _queryAdapter.queryList('SELECT serverId FROM Product',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
   Future<int> insertLocally(Product object) {
     return _productInsertionAdapter.insertAndReturnId(
         object, OnConflictStrategy.abort);

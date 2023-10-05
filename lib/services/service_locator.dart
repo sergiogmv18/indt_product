@@ -31,8 +31,4 @@ Future<void> setupLocator() async {
 Future startSession() async {
   List allProducts = await serviceLocator<IndtProductsDataBase>().productDao.fetchAll();
   serviceLocator<Session>().setValue('productsSaved', allProducts);
-  
-          
-  
-  
 }
