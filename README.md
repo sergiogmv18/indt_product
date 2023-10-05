@@ -42,7 +42,8 @@ Despois que for inicializado e chegando na tela HomeScreen fará uma request par
 # Requisitos do Sistema
     - Linguagem Dart
     - Floor (orm)
-    - Realizar o comando "flutter pub get" ao fazer un clone para atualizar o projeto
+    - Realizar o comando "flutter pub get" ao fazer un clone para atualizar o projeto,
+    - APK na raiz do projeto, app-release.apk
     - Versionamento de código com Git
     - caso altere os models, as querys ou database precisara rodar o comando :
         - flutter pub run build_runner build --delete-conflicting-outputs   ou    - flutter packages pub run build_runner build 
