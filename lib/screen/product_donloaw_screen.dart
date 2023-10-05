@@ -158,18 +158,22 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
             Text(
               translate('your list of saved products is currently empty. Please return to the previous page to explore available products and save the ones that interest you the most'),
               style:Theme.of(context).textTheme.titleLarge!,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify,
             ),
-            TextButton.icon(
-              onPressed: (){
-              Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);   
-              }, 
-              icon: const Icon(Icons.arrow_circle_left), 
-              label:  Text(
-                translate('return'),
-                style:Theme.of(context).textTheme.titleLarge!
+            Container(
+              alignment: Alignment.centerRight,
+              child:TextButton.icon(
+                onPressed: (){
+                Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);   
+                }, 
+                icon:  Icon(Icons.arrow_circle_left, color: CustomColors.activeButtonColor,), 
+                label:  Text(
+                  translate('return'),
+                  style:Theme.of(context).textTheme.titleLarge!
+                ),
               ),
-            ),  
+            )
+             
           ],
         )
       )
