@@ -5,23 +5,36 @@ import 'package:indt_products/style.dart';
 
 /*
  * Component of appBar defauld, to be used throughout the app
- * @author  SGV - 20231004
- * @version 1.0 - 20231004 - initial release
+ * @author  SGV      - 20231004
+ * @version 1.0      - 20231004         - initial release
+ * @param <bool>     - showButtonReturn - show button to return to the previous page or perform some action
+ * @param <Function> - onPressed        - action of button
  * @return  <component> widget
  */
-appBarCustom(BuildContext context) {
+appBarCustom(BuildContext context, {Widget? leading, bool showButtonReturn = false, bool showactions = false, void Function()? onPressed}) {
   return AppBar(
     backgroundColor:CustomColors.activeButtonColor,
-    automaticallyImplyLeading: false,
+    automaticallyImplyLeading: showButtonReturn,
+    leading: showButtonReturn ? leading ?? IconButton(
+      onPressed:onPressed, 
+      icon:const Icon(Icons.arrow_circle_left), 
+      iconSize: 40
+    ): null, 
     toolbarHeight: 110,    
     centerTitle: true,
     elevation: 0,
     title:Image.asset(
       'assets/logo_new.png',
-      width: 200,
+      width: 150,
       filterQuality: FilterQuality.high,
     ),
-    actions: [
+    actions:!showactions ? [
+        IconButton(
+        onPressed:()async{
+          Navigator.of(context).pushNamedAndRemoveUntil('/downloaded/products', (route) => false);
+        }, 
+        icon:const Icon(Icons.download_done) 
+      ),
       IconButton(
         onPressed:()async{
           showCircularLoadingDialog(context);
@@ -30,6 +43,6 @@ appBarCustom(BuildContext context) {
         }, 
         icon:const Icon(Icons.replay_outlined) 
       )
-    ],
+    ]: null,
   );
 }

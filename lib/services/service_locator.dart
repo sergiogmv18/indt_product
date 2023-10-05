@@ -1,8 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:indt_products/controllers/product_controller.dart';
 import 'package:indt_products/database/database.dart';
 import 'package:indt_products/services/session.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt serviceLocator = GetIt.instance;
 
@@ -31,12 +29,8 @@ Future<void> setupLocator() async {
   * @return  void
   */
 Future startSession() async {
-  final prefs = await SharedPreferences.getInstance();
-  if (prefs.getBool('first_Confirmation') != true) {
-    await ProductController().getProductsOfServer();
-  }
   List allProducts = await serviceLocator<IndtProductsDataBase>().productDao.fetchAll();
-  serviceLocator<Session>().setValue('Products', allProducts);
+  serviceLocator<Session>().setValue('productsSaved', allProducts);
   
           
   

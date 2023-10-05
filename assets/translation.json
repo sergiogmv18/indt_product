@@ -1,18 +1,491 @@
 [
      { 
-        "placeholder":"save",
-        "en":"save",
-        "pt_br":"salvar",
-        "fr":"sauver"
+        "placeholder":"see details",
+        "en":"see details",
+        "pt_br":"ver detalhes"
        
     },
     { 
-        "placeholder":"Login",
-        "en":"Login",
-        "pt_br":"Entrar",
-        "fr":"Log-in"
+        "placeholder":"price",
+        "en":"price",
+        "pt_br":"preço"
+       
+    },
+    { 
+        "placeholder":"discount percentage",
+        "en":"discount percentage",
+        "pt_br":"percentual de desconto"
+       
+    },
+    { 
+        "placeholder":"rating",
+        "en":"rating",
+        "pt_br":"classificação"
+       
+    },
+    { 
+        "placeholder":"stock",
+        "en":"stock",
+        "pt_br":"estoque"
+       
+    },
+    { 
+        "placeholder":"brand",
+        "en":"brand",
+        "pt_br":"marca"
+       
+    },
+    { 
+        "placeholder":"category",
+        "en":"category",
+        "pt_br":"categoria"
+       
+    },
+    { 
+        "placeholder":"product list is empty, please update",
+        "en":"product list is empty, please update",
+        "pt_br":"a lista de produtos está vazia, por favor, atualize"
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
+       
+    },
+    { 
+        "placeholder":"",
+        "en":"",
+        "pt_br":""
        
     }
+    
 
 
 

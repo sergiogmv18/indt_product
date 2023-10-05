@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:indt_products/components/app_bar_custom.dart';
 import 'package:indt_products/components/circular_progress_indicator.dart';
+import 'package:indt_products/controllers/navigator_controller.dart';
 import 'package:indt_products/controllers/product_controller.dart';
 import 'package:indt_products/controllers/translate_controller.dart';
-import 'package:indt_products/database/database.dart';
 import 'package:indt_products/services/service_locator.dart';
+import 'package:indt_products/services/session.dart';
 import 'package:indt_products/style.dart';
+import 'package:provider/provider.dart';
 
 class DownloadedProductstScreen extends StatefulWidget {
  const  DownloadedProductstScreen({super.key});
@@ -16,74 +18,84 @@ class DownloadedProductstScreen extends StatefulWidget {
 }
 class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
   @override
-  void initState() {  
+  void initState() { 
     super.initState();
   }  
   @override
   Widget build(BuildContext context) {
+    final allProductsSaved = Provider.of<ProductController>(context).allProductSaved;
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () => NavigatorContoller().onWillPop(context,backToScreen: true, routeName: '/'),
       child: Scaffold(
         backgroundColor:CustomColors.frontColor,
-        appBar:appBarCustom(context, ),
-        body:FutureBuilder(
-          future:   serviceLocator<IndtProductsDataBase>().productDao.fetchAll(),
-          builder: (context, app){
-            if(app.connectionState == ConnectionState.done){
-              return ListView.builder(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 30),
-                  itemCount: app.data!.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child:Card(
-                        child:Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ProductController.getImgProduct(context, url: app.data![index]!.getThumbnail()!, width: 50, height: 50),
-                              GestureDetector(
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width * 0.65,
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                       app.data![index]!.getTitle()!,
-                                        style:Theme.of(context).textTheme.titleMedium,
-                                      ),
-                                      Text(
-                                        translate('see details'),
-                                        style:Theme.of(context).textTheme.titleLarge!.copyWith(color: CustomColors.activeButtonColor),
-                                      ),
-                                    ]
-                                  )
-                                ),
-                                onTap: (){
-                                  Navigator.of(context).pushNamedAndRemoveUntil('/product', (route) => false, arguments:app.data![index]!);
-                                },
-                              ),
-                              IconButton(
-                                onPressed:()async{
-                                  showCircularLoadingDialog(context);
-                                  await ProductController().delete(productWk:app.data![index]!);
-                                  Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false, arguments: app.data![index]!);
-                                }, 
-                                icon: const Icon(Icons.delete)
-                              )
-                            ],
-                          ),
-                        )
-                    );
-                  }
-                );
-            }
-            if(app.hasError){
-             return showMessageUser();
-            }
-            return circularProgressIndicator(context);
+        appBar:appBarCustom(
+          context,
+          showButtonReturn: true,
+          onPressed: (){
+            Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);                            
           }
-        )
+        ),
+        body: allProductsSaved.isNotEmpty ? Container(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            child:Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              alignment:WrapAlignment.center,
+              children: List.generate(allProductsSaved.length, (index) {
+                return Card(
+                  color: CustomColors.frontColor,
+                  elevation: 4,
+                  child:Container(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    child:Column(
+                      children: [
+                        ProductController.getImgProduct(context, url: allProductsSaved[index]!.getThumbnail()!, width: MediaQuery.of(context).size.width * 0.45, height: MediaQuery.of(context).size.width * 0.40),
+                        const SizedBox(height: 10),
+                        Text(
+                          allProductsSaved[index]!.getTitle()!,
+                          style:Theme.of(context).textTheme.titleMedium,
+                          maxLines: 1,
+                          overflow:TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          allProductsSaved[index]!.getPrice().toString(),
+                          style:Theme.of(context).textTheme.titleMedium!.copyWith(color: CustomColors.activeButtonColor),
+                          maxLines: 1,
+                          overflow:TextOverflow.ellipsis,
+                        ), 
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextButton(
+                              onPressed:(){
+                                Navigator.of(context).pushNamedAndRemoveUntil('/product', (route) => false, arguments: allProductsSaved[index]);
+                              }, 
+                              child:Text(
+                                translate('see details'),
+                                style:Theme.of(context).textTheme.titleSmall!.copyWith(color: CustomColors.activeButtonColor),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed:()async{
+                                showCircularLoadingDialog(context);
+                                await ProductController().delete(productWk:allProductsSaved[index]!);
+                                Provider.of<ProductController>(context, listen: false).productsSaved = serviceLocator<Session>().getValue('productsSaved');
+                                Navigator.of(context).pop();
+                              }, 
+                              icon: const Icon(Icons.delete)
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  )
+                );
+              }),
+            ),
+          )
+        ) :showMessageUser()
       )
     );
   }
@@ -103,16 +115,15 @@ class _DownloadedProductstScreenState extends State<DownloadedProductstScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            translate('product list is empty, please update'),
+            translate('list of saved products is empty, go back to the previous page see the products, and save the one that is most interesting to you'),
             style:Theme.of(context).textTheme.titleLarge!
           ),
            IconButton(
-            onPressed:()async{
-              showCircularLoadingDialog(context);
-              await ProductController().getProductsOfServer();
-              Navigator.of(context).pop();
+            onPressed:(){
+              Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);   
             }, 
-            icon:const Icon(Icons.replay_outlined) 
+            icon:const Icon(Icons.arrow_circle_left),
+            iconSize: 60,
           )
         ],
       )

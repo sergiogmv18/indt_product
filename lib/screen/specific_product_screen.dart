@@ -1,7 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:indt_products/components/app_bar_custom.dart';
-import 'package:indt_products/components/circular_progress_indicator.dart';
-import 'package:indt_products/controllers/product_controller.dart';
+import 'package:indt_products/controllers/navigator_controller.dart';
 import 'package:indt_products/controllers/translate_controller.dart';
 import 'package:indt_products/models/product.dart';
 import 'package:indt_products/style.dart';
@@ -22,77 +22,139 @@ class _SpecificProductScreenState extends State<SpecificProductScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+     onWillPop: () => NavigatorContoller().onWillPop(context,backToScreen: true, routeName: '/'),
       child: Scaffold(
         backgroundColor:CustomColors.frontColor,
-        appBar:appBarCustom(context, ),
-        body:Container(
-          child: Column(
-            children: [
-              Text(
-                  productWk.getTitle()!,
+        appBar:appBarCustom(
+          context,
+          showButtonReturn: true,
+          onPressed: (){
+            Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);                            
+          }
+        ),
+        body: Column(
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
+                autoPlay: true,
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child:  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text:translate('cheer'),
-                       //  style: themeFlamenco(textStyle: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold, fontSize: 50, color: CustomColors().backgroundColorDark))
-                        ),
-                        const TextSpan(text: '\n'),
-                        TextSpan(
-                          text:translate('for your'),
-                        //  style: themeFlamenco(textStyle: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold, fontSize: 40, color: CustomColors().frontColor))
-                        ),
-                       
-                        const TextSpan(text: '\n\n'),
-                        TextSpan(
-                          text:translate('cashback'),
-                         // style: themeFlamenco(textStyle: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold, fontSize: 50, color: CustomColors().backgroundColorDark))
-                        ),
-                      ]
-                    )
-                  ),
+              items: productWk.getImages()! .map((item) => Container(
+                alignment: Alignment.center,
+                child:Image.network(item, width: MediaQuery.of(context).size.width * 0.8),
+              )).toList(),
+            ),
+            const SizedBox(height: 20),  
+            Text(
+              productWk.getTitle()!,
+               style:Theme.of(context).textTheme.titleLarge,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productWk.getDescription()!,
+                      style:Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 10),  
+                    Text.rich(
+                      TextSpan(
+                        children: [
+// PRICE
+                          TextSpan(
+                            text:'${translate('price')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getPrice()!.toStringAsFixed(0),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+// DISCOUNT PERCENTAGE
+                          TextSpan(
+                            text:'${translate('discount percentage')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getDiscountPercentage().toString(),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+// RATING
+                          TextSpan(
+                            text:'${translate('rating')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getRating().toString(),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+//STOCK
+                          TextSpan(
+                            text:'${translate('stock')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getStock().toString(),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+// BRAND
+                         TextSpan(
+                            text:'${translate('brand')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getBrand().toString(),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+// CATEGORY
+                          TextSpan(
+                            text:'${translate('category')}: ',
+                            style:Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text: productWk.getCategory().toString(),
+                            style:Theme.of(context).textTheme.titleMedium!
+                          ),
+                          const TextSpan(
+                            text: '\n'
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left
+                    ),
+                  ],
                 )
               )
-            ],
-          ),
+            )
+          ],
         ),
-      )
-    );
-  }
-
-
-  /*
-  * show widget case product list is empty 
-  * @author SGV
-  * @version 1.0 - 20231004 - initial release
-  * @return  void
-  */
-  showMessageUser(){
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child:Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            translate('product list is empty, please update'),
-            style:Theme.of(context).textTheme.titleLarge!
-          ),
-           IconButton(
-            onPressed:()async{
-              showCircularLoadingDialog(context);
-              await ProductController().getProductsOfServer();
-              Navigator.of(context).pop();
-            }, 
-            icon:const Icon(Icons.replay_outlined) 
-          )
-        ],
-      )
+      ),
+    
     );
   }
 }
+
+/*
+
+
+                  */

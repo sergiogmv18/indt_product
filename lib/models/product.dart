@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:floor/floor.dart';
-import 'package:indt_products/models/Model_base.dart';
+import 'package:indt_products/models/model_base.dart';
 
 @Entity(tableName: 'Product')
 class Product extends ModelBase {
@@ -28,7 +28,7 @@ class Product extends ModelBase {
   }
 
   String? getDescription(){
-    return title;
+    return description;
   }
 
   double? getPrice(){

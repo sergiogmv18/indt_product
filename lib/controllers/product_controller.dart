@@ -8,8 +8,14 @@ import 'package:indt_products/services/request.dart';
 import 'package:indt_products/services/service_locator.dart';
 import 'package:indt_products/services/session.dart';
 
-class ProductController{
 
+class ProductController  with ChangeNotifier {
+  List _productsSaved = serviceLocator<Session>().getValue('productsSaved');
+  List get allProductSaved => _productsSaved;
+  set productsSaved(List value) {
+   _productsSaved  = value;
+    notifyListeners();
+  }
 
   /*
   * Get all product of server
@@ -82,7 +88,6 @@ class ProductController{
     await startSession();
   }
 
-
  /*
   * check if the product has already been saved
   * @author SGV
@@ -91,7 +96,7 @@ class ProductController{
   * @return  Widget
   */
   static productIsSaved(int serverId){
-   List allProducts = serviceLocator<Session>().getValue('Products');
+   List allProducts = serviceLocator<Session>().getValue('productsSaved');
    if(allProducts.isNotEmpty){
       for(Product product in allProducts){
         if(serverId == product.getServerId()){
@@ -117,12 +122,14 @@ class ProductController{
       url,
       width:width,
       height: height,
+      fit: BoxFit.cover,
       errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
         return Image.asset(
           'assets/logo_new.png',
           width:width,
           height: height,
           filterQuality: FilterQuality.high,
+          fit: BoxFit.cover
         );
       },
       frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {

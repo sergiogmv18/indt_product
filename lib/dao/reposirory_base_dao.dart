@@ -1,6 +1,6 @@
 // dao/person_dao.dart
 import 'package:floor/floor.dart';
-import 'package:indt_products/models/Model_base.dart';
+import 'package:indt_products/models/model_base.dart';
 
 abstract class ReposiroryBaseDao<Model extends ModelBase> {
   @insert
